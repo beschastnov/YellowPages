@@ -1,0 +1,4 @@
+DB_USER=mikle
+DB_NAME=yellow_pages
+DB_PASS=null
+SESSION_SECRET=hello
