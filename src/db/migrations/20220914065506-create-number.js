@@ -13,6 +13,15 @@ module.exports = {
       phone: {
         type: Sequelize.STRING,
       },
+      place: {
+        type: Sequelize.TEXT,
+      },
+      lat: {
+        type: Sequelize.FLOAT,
+      },
+      lon: {
+        type: Sequelize.FLOAT,
+      },
       user_id: {
         type: Sequelize.INTEGER,
         references: {

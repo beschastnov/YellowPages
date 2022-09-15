@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Authorization({ session, setSession }) {
   const navigate = useNavigate();
   const [input, setInput] = useState({ login: '', password: '' });
-  const [checkAuth, setCheckAuth] = useState(true);
+  const [error, setError] = useState(true);
   const inputHandler = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -22,7 +22,7 @@ export default function Authorization({ session, setSession }) {
       setSession(data);
       navigate('/');
     } else {
-      setCheckAuth(false);
+      setError(false);
     }
   };
 
@@ -39,7 +39,7 @@ export default function Authorization({ session, setSession }) {
           <label htmlFor="exampleInputPassword1" className="form-label">
             Password
             <input onChange={inputHandler} name="password" value={input.password} type="password" className="form-control" id="exampleInputPassword1" />
-            {!checkAuth && (
+            {!error && (
             <div style={{ color: 'red' }}>
               Check entered data
             </div>

@@ -4,6 +4,7 @@ import Add from './pages/Add';
 import Authorization from './pages/Authorization';
 import Edit from './pages/Edit';
 import Main from './pages/Main';
+import More from './pages/More';
 import MyNumbers from './pages/MyNumbers';
 import Registration from './pages/Registration';
 import Header from './ui/Header';
@@ -29,6 +30,7 @@ export default function App({ userSession, allNumbers }) {
         <Route path="/authorization" element={<Authorization session={session} setSession={setSession} />} />
         <Route path="/mynumbers" element={<MyNumbers deleteHandler={deleteHandler} myNumbers={myNumbers} setMyNumbers={setMyNumbers} session={session} setSession={setSession} />} />
         <Route path="/number/:id/edit" element={<Edit session={session} setSession={setSession} />} />
+        <Route path="/more/:id" element={<More session={session} setSession={setSession} />} />
       </Routes>
     </div>
   );

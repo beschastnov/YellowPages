@@ -1,19 +1,46 @@
 import express from 'express';
+import axios from 'axios';
 import userCheck from '../middlewares/userCheck';
 import authCheck from '../middlewares/authCheck';
 import { Number } from '../db/models';
+
+// геокодер - ruqevb3357
+//  .then((data) => setTimeout(() => { console.log(data.data.result); }, 0));
+// Москва, Садовническая, 25
+// const resultGeocoder = await axios.get(`https://catalog.api.2gis.com/3.0/items/geocode?q=${encodeURIComponent(place)}&fields=items.point&key=ruqevb3357`);
+// console.log(resultGeocoder.data.result.items[0]);
+// ===>
+// {
+//   address_name: '11',
+//   building_name: 'Орджоникидзе 11, дисконт-центр',
+//   full_name: 'Москва, Орджоникидзе 11, дисконт-центр',
+//   id: '4504235282693584',
+//   name: 'Орджоникидзе 11, дисконт-центр',
+//   point: { lat: 55.709305, lon: 37.596241 },
+//   purpose_name: 'Shopping center',
+//   type: 'building'
+// }
 
 const router = express.Router();
 
 router.post('/number', authCheck, async (req, res) => {
   try {
-    const { name, phone } = req.body;
-    const currNumber = await Number.create({
-      company: name,
-      phone,
-      user_id: req.session.userSession.id,
-    });
-    res.json(currNumber);
+    const { name, phone, place } = req.body;
+    const resultGeocoder = await axios.get(`https://catalog.api.2gis.com/3.0/items/geocode?q=${encodeURIComponent(place)}&fields=items.point&key=ruqevb3357`);
+    console.log(resultGeocoder.data.meta.code);
+    if (resultGeocoder.data.meta.code === 200 && name !== '' && phone !== '' && place !== '') {
+      const currNumber = await Number.create({
+        company: name,
+        phone,
+        place: resultGeocoder.data.result.items[0].full_name,
+        lat: resultGeocoder.data.result.items[0].point.lat,
+        lon: resultGeocoder.data.result.items[0].point.lon,
+        user_id: req.session.userSession.id,
+      });
+      res.json(currNumber);
+    } else {
+      res.sendStatus(418);
+    }
   } catch (e) {
     console.log(e);
   }

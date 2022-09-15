@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   Number.init({
     company: DataTypes.STRING,
     phone: DataTypes.STRING,
+    place: DataTypes.TEXT,
+    lat: DataTypes.FLOAT,
+    lon: DataTypes.FLOAT,
     user_id: DataTypes.INTEGER,
   }, {
     sequelize,

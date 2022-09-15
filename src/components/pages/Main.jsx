@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Main({ numbersArr, setNumbersArr }) {
   useEffect(() => {
@@ -18,6 +19,9 @@ export default function Main({ numbersArr, setNumbersArr }) {
               <p />
               <b>Номер телефона:</b>
               {el.phone}
+              
+              <p />
+              <Link to={`more/${el.id}`}>Подробнее</Link>
             </li>
           ))}
         </ul>
