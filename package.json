@@ -36,6 +36,8 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
+    "@2gis/mapgl": "^1.30.1",
+    "2gis-maps": "^3.7.1",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.2",

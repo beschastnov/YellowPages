@@ -18,6 +18,7 @@ export default function Layout({ initState }) {
         />
         <script defer src="/app.js" />
         <script defer src="/vendor.js" />
+        <script src="https://mapgl.2gis.com/api/js/v1" />
         <title>Document</title>
       </head>
       <body>

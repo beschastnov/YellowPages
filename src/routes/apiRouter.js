@@ -46,6 +46,12 @@ router.post('/number', authCheck, async (req, res) => {
   }
 });
 
+router.get('/map/geo/:id', async (req, res) => {
+  const { id } = req.params;
+  const oneNumber = await Number.findByPk(id);
+  res.json(oneNumber);
+});
+
 router.get('/numbers', async (req, res) => {
   const allNumbers = await Number.findAll({ order: [['company', 'DESC']] });
   res.json(allNumbers);

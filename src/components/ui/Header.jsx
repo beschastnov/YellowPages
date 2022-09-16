@@ -37,7 +37,7 @@ export default function Header({ session, setSession }) {
               ) : (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/add">Add number</Link>
+                    <Link className="nav-link" to="/add">Add company</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/mynumbers">My numbers</Link>

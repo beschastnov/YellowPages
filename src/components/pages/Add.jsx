@@ -19,7 +19,8 @@ export default function Add({
     })
       .then((res) => res.json())
       .then((data) => setNumbersArr((prev) => [...prev, data]))
-      .then(setInput({ name: '', phone: '', place: '' }));
+      .then(setInput({ name: '', phone: '', place: '' }))
+      .then(setError(true));
     if (responce.status !== 200) {
       setError(false);
     }

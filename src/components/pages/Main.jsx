@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { load } from '@2gis/mapgl';
+import LiComponentNumber from '../ui/LiComponentNumber';
 
 export default function Main({ numbersArr, setNumbersArr }) {
   useEffect(() => {
@@ -9,19 +10,12 @@ export default function Main({ numbersArr, setNumbersArr }) {
   }, []);
   return (
     <div>
-      <h2>Все номера</h2>
+      <h2>Все компании</h2>
       {numbersArr[0] ? (
         <ul className="list-group">
           {numbersArr?.map((el) => (
             <li className="list-group-item" key={el.id}>
-              <b>Кампания:</b>
-              {el.company}
-              <p />
-              <b>Номер телефона:</b>
-              {el.phone}
-              
-              <p />
-              <Link to={`more/${el.id}`}>Подробнее</Link>
+              <LiComponentNumber el={el} />
             </li>
           ))}
         </ul>
